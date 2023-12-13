@@ -3,10 +3,12 @@
 import { ErrorRequestHandler } from "express";
 import config from "../config";
 import { TErrorResponse } from "../types/TErrorResponse";
+import mongoose from "mongoose";
+
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     const errorResponse: TErrorResponse = {
-        statusCode: err.statusCode || 5000,
+        statusCode: err.statusCode || 500,
         status: err.status || 'error',
         message: err.message || 'something Went wrong',
         issues: err.issues || []

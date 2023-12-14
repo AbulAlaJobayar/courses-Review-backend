@@ -5,5 +5,6 @@ import { courseController } from "./course.controller";
 
 
 const router= express.Router()
-router.post('/course',validateRequest(courseValidationSchema.createCourseValidationSchema),courseController.createCourse,);
+router.post('/course',validateRequest(courseValidationSchema.createCourseValidationSchema),courseController.createCourse);
+router.get('/courses',courseController.getAllCourseFromDB)
 export const courseRoute=router

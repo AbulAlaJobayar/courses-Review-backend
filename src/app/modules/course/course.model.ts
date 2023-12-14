@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
 import TCourse, { TDetails, TTags } from "./course.interface";
 const tagsSchema = new Schema<TTags>({
+
     name: {
         type: String,
         required: true
@@ -10,7 +11,7 @@ const tagsSchema = new Schema<TTags>({
         required: true
 
     }
-})
+}, { _id: false })
 const detailsSchema = new Schema<TDetails>({
     level: {
         type: String,
@@ -20,7 +21,7 @@ const detailsSchema = new Schema<TDetails>({
         type: String,
         required: true
     }
-})
+}, { _id: false })
 const courseSchema = new Schema<TCourse>({
     title: {
         type: String,
@@ -35,8 +36,8 @@ const courseSchema = new Schema<TCourse>({
         type: Schema.Types.ObjectId,
         ref: 'Category'
     },
-    price:{
-        type:Number,
+    price: {
+        type: Number,
         required: [true, 'please input  price']
     },
     tags: {
@@ -55,13 +56,27 @@ const courseSchema = new Schema<TCourse>({
         type: String,
         required: true
     },
-    provider:{
+    provider: {
         type: String,
-        required: true   
+        required: true
     },
-    details:{
-        type:detailsSchema,
-        required:true
+    details: {
+        type: detailsSchema,
+        required: true
     }
+},{
+    toJSON: {
+        virtuals: true,
+        
+      },
+   versionKey:false, 
+     
 })
-export const Course=model<TCourse>('Course',courseSchema)
+courseSchema.virtual('durationInWeeks').get(function() {
+const startDate=new Date(this.startDate) ;
+const endDate=new Date(this.endDate) ;
+const estimateDate = endDate.getTime() - startDate.getTime();
+const weeks=Math.ceil(estimateDate / (7 * 24 * 60 * 60 * 1000))
+return weeks
+  });
+export const Course = model<TCourse>('Course', courseSchema)

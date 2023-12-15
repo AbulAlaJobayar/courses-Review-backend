@@ -3,14 +3,16 @@ import express, { Application, Request, Response } from 'express'
 import notFound from './app/middleware/notFound'
 import globalErrorHandler from './app/middleware/globalErrorHandler'
 import { courseRoute } from './app/modules/course/course.route'
+import { categoryRoute } from './app/modules/category/category.route'
 const app: Application = express()
 
 app.use(express.json())
 app.use(cors())
 
 app.use('/api',courseRoute)
+app.use('/api',categoryRoute)
 app.get('/', (req: Request, res: Response) => {
-  res.json({
+res.json({
     status: 'success',
     message: 'Course Review server running'
   })

@@ -4,6 +4,7 @@ import notFound from './app/middleware/notFound'
 import globalErrorHandler from './app/middleware/globalErrorHandler'
 import { courseRoute } from './app/modules/course/course.route'
 import { categoryRoute } from './app/modules/category/category.route'
+import { reviewRoute } from './app/modules/review/review.router'
 const app: Application = express()
 
 app.use(express.json())
@@ -11,6 +12,7 @@ app.use(cors())
 
 app.use('/api',courseRoute)
 app.use('/api',categoryRoute)
+app.use('/api',reviewRoute)
 app.get('/', (req: Request, res: Response) => {
 res.json({
     status: 'success',

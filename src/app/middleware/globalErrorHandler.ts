@@ -29,6 +29,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
 
     }
      if (err instanceof mongoose.Error.CastError) {
+        console.log(err,'from cast error')
         const simplifiedError = handleCastError(err)
         statusCode = simplifiedError.statusCode;
         success = simplifiedError.success;

@@ -15,7 +15,7 @@ const tagsSchema = new Schema<TTags>({
 const detailsSchema = new Schema<TDetails>({
     level: {
         type: String,
-        required: true
+        enum:['Beginner', 'Intermediate','Advanced']
     },
     description: {
         type: String,

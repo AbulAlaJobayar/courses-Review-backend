@@ -10,6 +10,14 @@ export const filter=<T>(modelQuery:Query<T[],T>,query:TQueryObj)=>{
      'sortBy',
      'sortOrder',
      'fields',
+     'minPrice',
+     'maxPrice',
+     'tags',
+     'startDate',
+     'language',
+     'provider',
+     'durationInWeeks',
+     'level'
  
     ]
     exclude.forEach((key)=>delete queryObj[key])

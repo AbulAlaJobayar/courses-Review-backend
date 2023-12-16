@@ -17,16 +17,22 @@ const createCourseIntoDB = async (payload: TCourse): Promise<TCourse> => {
 }
 
 const getAllCourseFromDB = async (query: TQueryObj): Promise<TCourse[] | any> => {
-    //const result = await getQuery(Course.find(), query)
     const filteredQuery = filter(Course.find(), query)
-    // const filtered = filter(modelQuery, query)
     const searches = search(filteredQuery, query)
     const sorted = sort(searches, query)
     const paginated = pagination(sorted, query)
     const field = SelectedField(paginated, query)
-    if (query.level){
-         const result =await Course.find({'details.level':query.level })
-         return result
+    if (query?.level){
+        return await Course.find({'details.level':query.level })      
+    }
+    else if(query.provider){
+        return await Course.find({'provider':query.provider })  
+    }
+    else if(query.language){
+        return await Course.find({'language':query.language }) 
+    }
+    else if(query.durationInWeeks){
+        return await Course.find({'durationInWeeks':query.durationInWeeks })   
     }
     return field
 }

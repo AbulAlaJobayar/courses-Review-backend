@@ -12,7 +12,7 @@ const createCourse = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.CREATED,
     success: true,
-    message: 'Category created successfully',
+    message: 'Course created successfully',
     data: result
   })
 });
@@ -21,7 +21,7 @@ const getAllCourseFromDB = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Categories retrieved successfully',
+    message: 'Courses retrieved successfully',
     data: result
   })
 })
@@ -33,7 +33,7 @@ const updateCourseIntoDB = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Categories retrieved successfully',
+    message: 'Course updated successfully',
     data: result
   })
 })

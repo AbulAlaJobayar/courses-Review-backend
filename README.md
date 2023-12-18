@@ -22,6 +22,8 @@ DATABASE_URL=your_mongodb_connection_string
 
 ```
 `DATABASE_URL=example(mongodb+srv://name:password@cluster0.ph1akes.mongodb.net/courses?retryWrites=true&w=majority)`
+### 6. create a dist folder  in root file:
+
 ## Development Workflow
 
 Run the project in development mode:
